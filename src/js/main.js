@@ -45,8 +45,50 @@ const conteinetList = document.getElementById('dynamic-list');
 const item = document.getElementById('item-input');
 
 btnAnadir.addEventListener('click', function (){
-  const texto = item.value;
-  console.log(texto)
+  const texto = item.value.trim();
+
+    if (texto !== "") {
+        // Crear elemento li
+        const li = document.createElement("li");
+
+        // Agregar texto
+        li.textContent = texto;
+
+        // Añadir al ul
+        conteinetList.appendChild(li);
+
+        // Limpiar input
+        item.value = "";
+    }
 });
 
-// conteinetList.appendChild(tarea)
+
+// MODO OSCURO
+
+const btndark = document.getElementById('toggle-dark');
+const box = document.querySelector('body')
+
+btndark.addEventListener('click', () =>{
+    box.classList.toggle('dark-mode');
+})
+
+// FORMULARIO Y ATRIBUTOS
+
+const input = document.getElementById('name-input');
+const texto = document.getElementById('name-display');
+const user = document.getElementById('user-name');
+const profile = document.getElementById('profile-img');
+
+input.addEventListener('input', () =>{
+    const value = input.value.trim();
+
+    // Cambiar texto en vivo
+    user.textContent = value || "Invitado";
+
+    // Cambiar imagen dinámicamente
+    profile.setAttribute(
+        "src",
+        `https://ui-avatars.com/api/?name=${value || "JS"}&background=random`
+    );
+})
+
